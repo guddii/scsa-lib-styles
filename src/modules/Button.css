@@ -1,0 +1,15 @@
+.Button {
+    background-color: rgba(255, 255, 255, 0.75);
+    border: 1px solid #eaeefb;
+    color: #000000;
+    padding: 0.5rem 0.75rem;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.Button--fullBleed {
+    width: 100%;
+}

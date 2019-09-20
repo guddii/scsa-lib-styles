@@ -1,0 +1,20 @@
+.Column--fullBleed {
+    grid-column-start: 1;
+    grid-column-end: -1;
+}
+
+.Column--borderBottom {
+    border-bottom: 3px solid rgba(255, 255, 255, 1);
+}
+
+@media (min-width: 0) and (max-width: 42em) {
+    .Column--borderBottom\!xs {
+        border-bottom: 3px solid rgba(255, 255, 255, 1);
+    }
+}
+
+@media (min-width: 42em) {
+    .Column--borderRight\@md {
+        border-right: 3px solid rgba(255, 255, 255, 1);
+    }
+}

@@ -1,0 +1,20 @@
+.TabContainer {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.TabContainer__body {
+    border: 3px solid rgba(255, 255, 255, 1);
+    border-radius: 0 2px 2px 2px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.TabContainer__body--shadow {
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+}
+
+.TabContainer__body--fullBleed,
+.TabContainer--fullBleed {
+    width: 100%;
+    height: 100%;
+}

@@ -1,0 +1,40 @@
+.View--spaced {
+    padding: 5rem 4.5rem 8rem 4.5rem;
+}
+
+.View--backgroundBlueprint {
+    background-color: rgb(36, 143, 203);
+}
+
+.View--backgroundBlueprint {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.1) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.1) 2px, transparent 1px),
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+    background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
+}
+
+.View--backgroundOverlay::before,
+.View--backgroundOverlay::after {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    display: block;
+
+    content: "";
+
+    opacity: 0.15;
+}
+
+.View--backgroundOverlay::after {
+    background: radial-gradient(circle at 50% 100%, #333, #333 25%, #eee 55%);
+}
+
+.View--backgroundOverlay::before {
+    background: radial-gradient(circle at 50% 0%, #333, #333 25%, #eee 55%);
+}
