@@ -1,5 +1,6 @@
 {
     "name": "@scsa/styles",
+    "private": true,
     "version": "1.0.0",
     "description": "Styles Library",
     "scripts": {
