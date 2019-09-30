@@ -1,5 +1,5 @@
 {
-    "name": "scsa-lib-styles",
+    "name": "@scsa/styles",
     "version": "1.0.0",
     "description": "Styles Library",
     "scripts": {

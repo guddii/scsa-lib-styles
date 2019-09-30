@@ -1,0 +1,42 @@
+.Logger {
+    font-size: small;
+    line-height: 1.25;
+
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+
+    padding: 0.5rem;
+
+    color: white;
+
+    justify-content: flex-end;
+}
+
+.Logger--stickyBottom {
+    position: absolute;
+    z-index: -1;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.Logger__item {
+    transition: opacity 500ms ease-out;
+
+    opacity: 0;
+}
+
+.Logger__item:nth-last-child(4),
+.Logger__item:nth-last-child(3) {
+    opacity: 0.25;
+}
+
+.Logger__item:nth-last-child(2) {
+    opacity: 0.5;
+}
+
+.Logger__item:nth-last-child(1),
+.Logger__item--visible {
+    opacity: 1;
+}
