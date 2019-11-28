@@ -1,0 +1,35 @@
+.Nav {
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.Nav__group {
+    border-right: 2px solid rgba(255, 255, 255, 0.5);
+    display: inline-block;
+}
+
+.Nav__header {
+    display: block;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+    padding: 0.2rem;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+}
+
+.Nav__item {
+    display: inline-block;
+    border-left: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.Nav__item:first-child {
+    border-left: none;
+}
+
+/*
+.Nav__item:hover,
+.Nav__item:focus {
+    background: #66acd5;
+}
+*/

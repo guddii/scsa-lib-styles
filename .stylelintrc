@@ -1,8 +1,3 @@
 {
-  "extends": [
-    "stylelint-prettier/recommended"
-  ],
-  "rules": {
-    "indentation": 4
-  }
+  "extends": "@scsa/base/src/stylelint/.stylelintrc"
 }

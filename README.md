@@ -1,2 +1,2 @@
-# scsa-lib-styles
-Styles Library
+# scsa-lib-styling
+Styling Library

@@ -1,0 +1,24 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset='utf-8')
+        title #{name}
+        meta(name='description' content=description)
+        meta(name='viewport' content='initial-scale=1')
+        link(rel='apple-touch-icon' href='/icon.png')
+        link(rel='manifest' href='/manifest.json')
+        meta(name='theme-color' content='#fafafa')
+    body.View.View--spaced.View--backgroundBlue
+        div.View.View--stacked.View--backgroundBlueprint
+            header.View__box.View__box--header
+                block header
+                    include ./partials/nav
+            main.View__box.View__box--strech.View__box--spaced
+                block main
+                    // Main Content
+            footer.View__box.View__box--footer
+                block footer
+                    include ./partials/brand
+        unless dev
+            link(type="text/css" rel="stylesheet" href='/assets/client.css')
+        script(type='text/javascript' src='/assets/client.js')

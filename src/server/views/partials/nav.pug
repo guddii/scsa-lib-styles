@@ -1,0 +1,34 @@
+mixin Dropdown(config)
+    if !config
+        - throw new Error("No configuration provided!");
+    if !config.items
+        .Dropdown
+            .Dropdown__head
+                .Dropdown__label #{config.label}
+                .Dropdown__title #{config.text}
+    else
+        .Dropdown.Dropdown--hover
+            .Dropdown__head
+                .Dropdown__label #{config.label}
+                .Dropdown__title #{config.text}
+                    i.fa.fa-caret-down
+            .Dropdown__body
+                each item in config.items
+                    .Dropdown__item
+                        a(href=item.options.href) #{item.options.text}
+
+mixin Nav(config)
+    if !config
+        - throw new Error("No configuration provided!");
+    nav.Nav
+        if config.items
+            each group in config.items
+                .Nav__group
+                    .Nav__header #{group.text}
+                    .Nav__body
+                        if group.items
+                            each dropdown in group.items
+                                .Nav__item
+                                    +Dropdown(dropdown)
+
++Nav(viewModel.navigation)

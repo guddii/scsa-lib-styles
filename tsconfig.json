@@ -1,0 +1,7 @@
+{
+  "extends": "@scsa/base/src/typescript/tsconfig",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "./dist"
+  }
+}
