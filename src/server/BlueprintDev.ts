@@ -1,10 +1,10 @@
-import { moduleBundler } from "@scsa/base";
+import * as base from "@scsa/base";
 import webpack from "webpack";
 import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
 import { Blueprint } from "./BlueprintProd";
 
-const config: webpack.Configuration = moduleBundler.client.dev() as unknown;
+const config: webpack.Configuration = base.moduleBundler.client.dev() as unknown;
 const compiler: webpack.Compiler = webpack(config);
 
 class BlueprintDev extends Blueprint {
