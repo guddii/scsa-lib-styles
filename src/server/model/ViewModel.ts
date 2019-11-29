@@ -28,7 +28,7 @@ export class ViewModel {
                         items: [
                             new Dropdown({
                                 label: "DOM",
-                                text: "Web Components",
+                                text: cfg.ORCHESTRATOR.options.text,
                                 items: cfg.ORCHESTRATORS
                             }),
                             new Dropdown({
