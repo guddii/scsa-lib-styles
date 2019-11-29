@@ -35,14 +35,14 @@ interface DropdownItemOptions {
     dom?: string;
 }
 
-function buildURL(params: ParamsDictionary, overwrite: Route) {
+function buildURL(params: ParamsDictionary, overwrite: Route, cfg: any) {
     const string = {
         ...params,
         ...overwrite
     };
     return new URL(
         // Replace with parameter
-        "http://localhost:4010/" +
+        cfg.ORCHESTRATOR.options.href.href +
         Object.values(string)
             .map(i => encodeURIComponent(i))
             .join("/")
@@ -51,10 +51,10 @@ function buildURL(params: ParamsDictionary, overwrite: Route) {
 
 export class DropdownItem extends scsa.Application {
 
-    constructor(options: DropdownItemOptions, params?: ParamsDictionary) {
+    constructor(options: DropdownItemOptions,  cfg: any, params?: ParamsDictionary, ) {
         super({
             text: options.text || Object.values(options.route).join(),
-            href: options.href || buildURL(params, options.route)
+            href: options.href || buildURL(params, options.route, cfg)
         });
     }
 

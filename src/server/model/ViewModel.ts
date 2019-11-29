@@ -37,10 +37,12 @@ export class ViewModel {
                                 items: [
                                     new DropdownItem(
                                         { route: { js: "Window" } },
+                                        cfg,
                                         params
                                     ),
                                     new DropdownItem(
                                         { route: { js: "Worker" } },
+                                        cfg,
                                         params
                                     )
                                 ]
@@ -70,6 +72,7 @@ export class ViewModel {
                                                 routing: "None"
                                             }
                                         },
+                                        cfg,
                                         params
                                     ),
                                     new DropdownItem(
@@ -80,6 +83,7 @@ export class ViewModel {
                                                 routing: "None"
                                             }
                                         },
+                                        cfg,
                                         params
                                     ),
                                     new DropdownItem(
@@ -90,6 +94,7 @@ export class ViewModel {
                                                 routing: "None"
                                             }
                                         },
+                                        cfg,
                                         params
                                     )
                                 ]
@@ -106,6 +111,7 @@ export class ViewModel {
                                                 routing: "Message Broker"
                                             }
                                         },
+                                        cfg,
                                         params
                                     )
                                 ]
