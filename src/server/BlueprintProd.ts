@@ -52,7 +52,7 @@ class BlueprintProd {
     settings() {
         this.app.set("views", path.resolve("src/server/views"));
         this.app.set("view engine", "pug");
-        this.app.use("compression");
+        this.app.use(compression());
     }
 
     /**
