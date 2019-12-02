@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import path from "path";
 import { Manifest } from "./api/resources/Manifest";
 import { ViewModel } from "./model/ViewModel";
+import compression from "compression";
 
 const STATIC_DIR = "src/server/static/";
 const MODULE_DIR = "node_modules/@scsa/styling/";
@@ -51,6 +52,7 @@ class BlueprintProd {
     settings() {
         this.app.set("views", path.resolve("src/server/views"));
         this.app.set("view engine", "pug");
+        this.app.use("compression");
     }
 
     /**
