@@ -1,4 +1,4 @@
-import * as base from "@scsa/base";
+import * as base from "@scsa/build";
 import webpack from "webpack";
 import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
