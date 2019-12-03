@@ -9,6 +9,7 @@
     },
     "dependencies": {
         "@scsa/base": "https://github.com:guddii/scsa-cfg-base.git",
+        "@scsa/global": "https://github.com:guddii/scsa-cfg-global.git",
         "express": "^4.17.1",
         "pug": "^2.0.4",
         "typescript": "^3.7.2",
