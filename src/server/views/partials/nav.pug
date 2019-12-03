@@ -15,7 +15,7 @@ mixin Dropdown(config)
             .Dropdown__body
                 each item in config.items
                     .Dropdown__item
-                        a(href=item.options.href) #{item.options.text}
+                        a(href=item.options.url) #{item.options.text}
 
 mixin Nav(config)
     if !config

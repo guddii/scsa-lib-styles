@@ -30,7 +30,7 @@ interface Route {
 
 interface DropdownItemOptions {
     text?: string;
-    href?: URL;
+    url?: URL;
     route?: Route;
     dom?: string;
 }
@@ -42,7 +42,7 @@ function buildURL(params: ParamsDictionary, overwrite: Route, cfg: any) {
     };
     return new URL(
         // Replace with parameter
-        cfg.CURRENT.options.href.href +
+        cfg.CURRENT.options.url.href +
         Object.values(string)
             .map(i => encodeURIComponent(i))
             .join("/")
@@ -54,7 +54,7 @@ export class DropdownItem extends global.Application {
     constructor(options: DropdownItemOptions,  cfg: any, params?: ParamsDictionary, ) {
         super({
             text: options.text || Object.values(options.route).join(),
-            href: options.href || buildURL(params, options.route, cfg)
+            url: options.url || buildURL(params, options.route, cfg)
         });
     }
 
