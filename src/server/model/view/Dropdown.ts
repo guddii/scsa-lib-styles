@@ -1,4 +1,4 @@
-import { scsa } from "@scsa/base";
+import * as global from "@scsa/global";
 import { ParamsDictionary } from "express-serve-static-core";
 
 interface DropdownOptions {
@@ -42,14 +42,14 @@ function buildURL(params: ParamsDictionary, overwrite: Route, cfg: any) {
     };
     return new URL(
         // Replace with parameter
-        cfg.ORCHESTRATOR.options.href.href +
+        cfg.CURRENT.options.href.href +
         Object.values(string)
             .map(i => encodeURIComponent(i))
             .join("/")
     );
 }
 
-export class DropdownItem extends scsa.Application {
+export class DropdownItem extends global.Application {
 
     constructor(options: DropdownItemOptions,  cfg: any, params?: ParamsDictionary, ) {
         super({
