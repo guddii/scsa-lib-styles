@@ -1,10 +1,21 @@
 extends ./blank
 
-block main
-    .Layout.Layout--fullBleed.Layout--shadow.Layout--bordered(class='Layout--sideBarRight@md')
-        .Column.Column--fullBleed.Column--borderBottom
-            block top
-        .Column(class='Column--borderBottom!xs Column--borderRight@md')
-            block left
-        .Column
-            block right
+block body
+    body.View.View--spaced.View--backgroundBlue
+        block body
+            div.View.View--stacked.View--backgroundBlueprint
+                header.View__box.View__box--header
+                    block header
+                        include ./partials/nav
+                main.View__box.View__box--strech.View__box--spaced
+                    block main
+                        .Layout.Layout--fullBleed.Layout--shadow.Layout--bordered(class='Layout--sideBarRight@md')
+                            .Column.Column--fullBleed.Column--borderBottom
+                                block top
+                            .Column(class='Column--borderBottom!xs Column--borderRight@md')
+                                block left
+                            .Column
+                                block right
+                footer.View__box.View__box--footer
+                    block footer
+                        include ./partials/brand
