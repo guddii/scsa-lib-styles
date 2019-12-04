@@ -106,6 +106,10 @@ class BlueprintProd {
      */
     mounts() {
         this.settings();
+        this.app.get("/manifest.json", (req: Request, res: Response) => {
+            res.type("json");
+            res.send(new Manifest(this.options));
+        });
         this.assets();
         this.static();
         this.view({
@@ -114,10 +118,6 @@ class BlueprintProd {
             view: "index",
             name: "App",
             description: "Application"
-        });
-        this.app.get("/manifest.json", (req: Request, res: Response) => {
-            res.type("json");
-            res.send(new Manifest(this.options));
         });
         return this;
     }

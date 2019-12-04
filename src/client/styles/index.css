@@ -5,6 +5,7 @@
 @import "./generic/fullBleed-body.css";
 /* Modules  */
 @import "./modules/Brand.css";
+@import "./modules/Button.css";
 @import "./modules/Column.css";
 @import "./modules/Dropdown.css";
 @import "./modules/IFrame.css";
