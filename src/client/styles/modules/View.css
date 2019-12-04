@@ -67,7 +67,7 @@ body.View {
 }
 
 .View__box--spaced {
-    padding: 5vh 10vw;
+    padding: 5vmin 10vmin;
 }
 
 .View__box--header {
@@ -76,7 +76,7 @@ body.View {
 }
 
 .View__box--footer {
-    padding: 0 0 5vh 0;
+    padding: 0 0 5vmin 0;
     text-align: center;
     color: white;
 }
