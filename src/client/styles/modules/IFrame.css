@@ -1,4 +1,5 @@
 .IFrame {
+    display: block;
     border: none;
 }
 

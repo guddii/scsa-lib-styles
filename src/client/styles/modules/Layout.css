@@ -1,5 +1,7 @@
 .Layout {
     display: grid;
+    max-width: 1080px;
+    margin: auto;
 }
 
 .Layout--fullBleed {

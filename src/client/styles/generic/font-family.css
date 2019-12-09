@@ -1,3 +1,4 @@
-body {
+body,
+:host {
     font-family: sans-serif;
 }
