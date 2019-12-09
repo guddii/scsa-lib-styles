@@ -1,46 +1,46 @@
 {
-    "name": "@scsa/styling",
-    "private": true,
-    "version": "1.0.0",
-    "description": "Styling Library",
-    "main": "./index.ts",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "dependencies": {
-        "@scsa/build": "https://github.com:guddii/scsa-cfg-build.git",
-        "@scsa/global": "https://github.com:guddii/scsa-cfg-global.git",
-        "cors": "^2.8.5",
-        "express": "^4.17.1",
-        "pug": "^2.0.4",
-        "typescript": "^3.7.2",
-        "webpack": "^4.41.2",
-        "webpack-dev-middleware": "^3.7.2",
-        "webpack-hot-middleware": "^2.25.0"
-    },
-    "devDependencies": {
-        "@types/node": "^12.12.11",
-        "@types/express": "^4.17.2",
-        "prettier": "1.18.2",
-        "stylelint": "^10.1.0",
-        "stylelint-config-prettier": "^5.2.0",
-        "stylelint-config-standard": "^18.3.0",
-        "stylelint-prettier": "^1.1.1",
-        "@types/webpack": "^4.41.0",
-        "@types/webpack-dev-middleware": "^2.0.3",
-        "@types/webpack-hot-middleware": "^2.16.5"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/guddii/scsa-lib-styling.git"
-    },
-    "keywords": [
-        "Styles"
-    ],
-    "author": "",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/guddii/scsa-lib-styling/issues"
-    },
-    "homepage": "https://github.com/guddii/scsa-lib-styling#readme"
+  "private": true,
+  "name": "@scsa/styling",
+  "description": "Styling Library",
+  "license": "MIT",
+  "author": "",
+  "homepage": "https://github.com/guddii/scsa-lib-styling#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guddii/scsa-lib-styling.git"
+  },
+  "bugs": {
+    "url": "https://github.com/guddii/scsa-lib-styling/issues"
+  },
+  "version": "1.0.0",
+  "main": "./index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@scsa/build": "https://github.com:guddii/scsa-cfg-build.git",
+    "@scsa/global": "https://github.com:guddii/scsa-cfg-global.git",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "pug": "^2.0.4",
+    "typescript": "^3.7.2",
+    "webpack": "^4.41.2",
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-hot-middleware": "^2.25.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.2",
+    "@types/node": "^12.12.11",
+    "@types/webpack": "^4.41.0",
+    "@types/webpack-dev-middleware": "^2.0.3",
+    "@types/webpack-hot-middleware": "^2.16.5",
+    "prettier": "1.18.2",
+    "stylelint": "^10.1.0",
+    "stylelint-config-prettier": "^5.2.0",
+    "stylelint-config-standard": "^18.3.0",
+    "stylelint-prettier": "^1.1.1"
+  },
+  "keywords": [
+    "Styles"
+  ]
 }
