@@ -6,11 +6,15 @@
     overflow: hidden;
     flex-direction: column;
 
-    padding: 1.5rem;
+    padding: 0.5rem;
 
     color: white;
 
     justify-content: flex-end;
+}
+
+.Logger--spaced {
+    padding: 1.5rem;
 }
 
 .Logger--stickyBottom {

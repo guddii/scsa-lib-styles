@@ -42,7 +42,7 @@ function buildURL(params: ParamsDictionary, overwrite: Route, cfg: any) {
     };
     return new URL(
         // Replace with parameter
-        cfg.CURRENT.options.url.href +
+        cfg.CURRENT.options.url.href + "Messaging/" +
         Object.values(string)
             .map(i => encodeURIComponent(i))
             .join("/")

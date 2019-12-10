@@ -11,6 +11,8 @@ const SHARED_STATIC = path.resolve(MODULE_DIR, STATIC_DIR);
 const LOCAL_STATIC = path.resolve(STATIC_DIR);
 const LOCAL_ASSETS = path.resolve("dist/client/");
 
+const API = path.resolve("dist/api/");
+
 interface BlueprintOptions {
     dev: boolean;
     name: string;
@@ -60,6 +62,7 @@ class BlueprintProd {
      */
     assets() {
         this.app.use("/assets", express.static(LOCAL_ASSETS));
+        this.app.use("/api", express.static(API));
     }
 
     /**
@@ -115,8 +118,21 @@ class BlueprintProd {
         this.assets();
         this.static();
         this.view({
+            route: "/",
+            view: "index",
+            name: "App",
+            description: "Application"
+        });
+        this.view({
             route:
-                "/:js?/:endpoint?/:construction?/:channel?/:routing?/:transformation?",
+              "/api/fragments/:type?",
+            view: "index",
+            name: "App",
+            description: "Application"
+        });
+        this.view({
+            route:
+                "/Messaging/:js?/:endpoint?/:construction?/:channel?/:routing?/:transformation?",
             view: "index",
             name: "App",
             description: "Application"
