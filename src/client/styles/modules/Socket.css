@@ -1,6 +1,7 @@
 .Socket {
     display: block;
     border: none;
+    position: relative;
 }
 
 .Socket--fullBleed {

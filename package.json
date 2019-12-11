@@ -23,6 +23,7 @@
     "@scsa/global": "https://github.com:guddii/scsa-cfg-global.git",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "nodesi": "^1.12.1",
     "pug": "^2.0.4",
     "typeface-permanent-marker": "0.0.72",
     "typescript": "^3.7.2",

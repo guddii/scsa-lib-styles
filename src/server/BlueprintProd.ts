@@ -3,6 +3,7 @@ import path from "path";
 import { Manifest } from "./api/resources/Manifest";
 import { ViewModel } from "./model/ViewModel";
 import cors from "cors";
+import nodesi from "nodesi";
 
 const STATIC_DIR = "src/server/static/";
 const MODULE_DIR = "node_modules/@scsa/styling/";
@@ -58,6 +59,14 @@ class BlueprintProd {
     }
 
     /**
+     * Enables Edge Side Includes
+     */
+    esi() {
+        this.app.use(nodesi.middleware());
+        return this;
+    }
+
+    /**
      * Apply assets
      */
     assets() {
@@ -84,7 +93,8 @@ class BlueprintProd {
             ...this.cfg,
             ...this.options,
             ...options,
-            ...new ViewModel(this.cfg, req.params)
+            ...new ViewModel(this.cfg, req.params),
+            req: req.params
         };
     }
 
@@ -124,9 +134,8 @@ class BlueprintProd {
             description: "Application"
         });
         this.view({
-            route:
-              "/api/fragments/:type?",
-            view: "index",
+            route: "/api/fragments/:type?",
+            view: "fragment",
             name: "App",
             description: "Application"
         });
