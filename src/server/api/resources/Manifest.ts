@@ -51,7 +51,7 @@ export class Manifest {
     }
 
     public get() {
-        return this.options;
+        return JSON.stringify(this.options);
     }
 
 }

@@ -123,7 +123,7 @@ class BlueprintProd {
         this.settings();
         this.app.get("/manifest.json", (req: Request, res: Response) => {
             res.type("json");
-            res.send(new Manifest(this.options));
+            res.send(new Manifest(this.options).get());
         });
         this.assets();
         this.static();
