@@ -29,7 +29,7 @@ export interface IManifestOptions {
 }
 
 const defaults: IManifestOptions = {
-    background_color: "#fafafa",
+    background_color: "#248fcb",
     display: Display[Display.standalone],
     icons: [{
         "sizes": "192x192",
@@ -39,7 +39,7 @@ const defaults: IManifestOptions = {
     name: "Application",
     short_name: "App",
     start_url: "/?utm_source=homescreen",
-    theme_color: "#fafafa"
+    theme_color: "#248fcb"
 };
 
 export class Manifest {
