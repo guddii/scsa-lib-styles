@@ -7,6 +7,7 @@
 
 .Dropdown__head {
     padding: 1rem;
+    display: inline-block;
 }
 
 .Dropdown > .Dropdown__body {
@@ -18,7 +19,7 @@
     opacity: 1;
 }
 
-.Dropdown.Dropdown--hover:hover {
+.Dropdown.Dropdown--hover:hover .Dropdown__head {
     color: #0e354d;
     background: #ffffff;
 }
@@ -53,4 +54,16 @@
 
 .Dropdown__item a:hover {
     background-color: #ddd;
+}
+
+/* smartphones, touchscreens */
+@media (hover: none) and (pointer: coarse) {
+    [data-dropdown-collapse]:checked ~ .Dropdown__head {
+        color: #0e354d;
+        background: #ffffff;
+    }
+
+    [data-dropdown-collapse]:checked ~ .Dropdown__body {
+        visibility: visible;
+    }
 }

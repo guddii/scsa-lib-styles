@@ -112,7 +112,7 @@ class BlueprintProd {
             ...this.cfg,
             ...this.options,
             ...options,
-            ...new ViewModel(this.cfg, params),
+            ...new ViewModel(this.cfg, req),
             req: { params }
         };
     }

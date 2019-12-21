@@ -3,6 +3,7 @@
     overflow-y: hidden;
     width: 100%;
     white-space: nowrap;
+    z-index: 900;
 }
 
 .Nav__group {

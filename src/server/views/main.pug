@@ -1,4 +1,6 @@
 extends ./blank
+include ./components/Nav
+include ./components/Brand
 
 block body
     body.View.View--spaced.View--backgroundBlue
@@ -6,7 +8,7 @@ block body
             div.View.View--stacked.View--backgroundBlueprint
                 header.View__box.View__box--header
                     block header
-                        include ./partials/nav
+                        +Nav(viewModel.navigation)
                 main.View__box.View__box--strech.View__box--spaced
                     block main
                         .Layout.Layout--fullBleed.Layout--shadow.Layout--bordered(class='Layout--sideBarRight@md')
@@ -18,4 +20,4 @@ block body
                                 block right
                 footer.View__box.View__box--footer
                     block footer
-                        include ./partials/brand
+                        +Brand()

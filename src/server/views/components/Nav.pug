@@ -1,0 +1,16 @@
+include Dropdown
+
+mixin Nav(config)
+    if !config
+        - throw new Error("No configuration provided!");
+    nav.Nav
+        if config.items
+            each group in config.items
+                .Nav__group
+                    .Nav__header #{group.text}
+                    .Nav__body
+                        if group.items
+                            each dropdown in group.items
+                                .Nav__item
+                                    +Dropdown(dropdown)
+

@@ -1,43 +1,80 @@
-import { ParamsDictionary } from "express-serve-static-core";
+import { Request } from "express";
 import { Dropdown, DropdownItem } from "./view/Dropdown";
 
 export class ViewModel {
     public viewModel: any;
 
-    constructor(cfg: any, params: ParamsDictionary) {
-;
-
+    constructor(cfg: any, req: Request) {
         this.viewModel = {
             navigation: {
                 items: [
                     {
-                        text: "Isolation",
                         items: [
                             new Dropdown({
+                                items: [
+                                    new DropdownItem(
+                                        {
+                                            text:
+                                                cfg.ORCHESTRATORS.Compoxure
+                                                    .options.text,
+                                            url: new URL(
+                                                req.path,
+                                                cfg.ORCHESTRATORS.Compoxure.options.url
+                                            )
+                                        },
+                                        cfg,
+                                        req.params
+                                    ),
+                                    new DropdownItem(
+                                        {
+                                            text:
+                                                cfg.ORCHESTRATORS.iFrame.options
+                                                    .text,
+                                            url: new URL(
+                                                req.path,
+                                                cfg.ORCHESTRATORS.iFrame.options.url
+                                            )
+                                        },
+                                        cfg,
+                                        req.params
+                                    ),
+                                    new DropdownItem(
+                                        {
+                                            text:
+                                                cfg.ORCHESTRATORS.WebComponents
+                                                    .options.text,
+                                            url: new URL(
+                                                req.path,
+                                                cfg.ORCHESTRATORS.WebComponents.options.url
+                                            )
+                                        },
+                                        cfg,
+                                        req.params
+                                    )
+                                ],
                                 label: "DOM",
-                                text: cfg.CURRENT.options.text,
-                                items: cfg.ORCHESTRATORS
+                                text: cfg.CURRENT.options.text
                             }),
                             new Dropdown({
                                 label: "JS",
-                                text: params.js
+                                text: req.params.js
                                 // items: [
                                 //     new DropdownItem(
                                 //         { route: { js: "Window" } },
                                 //         cfg,
-                                //         params
+                                //         req.params
                                 //     ),
                                 //     new DropdownItem(
                                 //         { route: { js: "Worker" } },
                                 //         cfg,
-                                //         params
+                                //         req.params
                                 //     )
                                 // ]
                             })
-                        ]
+                        ],
+                        text: "Isolation"
                     },
                     {
-                        text: "Messaging",
                         items: [
                             new Dropdown({
                                 label: "Endpoints",
@@ -48,8 +85,6 @@ export class ViewModel {
                                 text: "Event Message"
                             }),
                             new Dropdown({
-                                label: "Channel",
-                                text: params.channel,
                                 items: [
                                     //     new DropdownItem(
                                     //         {
@@ -60,35 +95,37 @@ export class ViewModel {
                                     //             }
                                     //         },
                                     //         cfg,
-                                    //         params
+                                    //         req.params
                                     //     ),
                                     new DropdownItem(
                                         {
-                                            text: "Messaging Bridge",
                                             route: {
                                                 channel: "Messaging Bridge",
                                                 routing: "None"
-                                            }
+                                            },
+                                            text: "Messaging Bridge"
                                         },
                                         cfg,
-                                        params
+                                        req.params
                                     ),
                                     new DropdownItem(
                                         {
-                                            text: "Message Bus",
                                             route: {
                                                 channel: "Message Bus",
                                                 routing: "None"
-                                            }
+                                            },
+                                            text: "Message Bus"
                                         },
                                         cfg,
-                                        params
+                                        req.params
                                     )
-                                ]
+                                ],
+                                label: "Channel",
+                                text: req.params.channel
                             }),
                             new Dropdown({
                                 label: "Routing",
-                                text: params.routing
+                                text: req.params.routing
                                 // items: [
                                 //     new DropdownItem(
                                 //         {
@@ -99,7 +136,7 @@ export class ViewModel {
                                 //             }
                                 //         },
                                 //         cfg,
-                                //         params
+                                //         req.params
                                 //     )
                                 // ]
                             }),
@@ -107,7 +144,8 @@ export class ViewModel {
                                 label: "Translator",
                                 text: "None"
                             })
-                        ]
+                        ],
+                        text: "Messaging"
                     }
                 ]
             }
