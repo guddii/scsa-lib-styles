@@ -9,10 +9,9 @@ html(lang="en")
         link(rel='manifest' href='/manifest.json')
         meta(name='theme-color' content='#248fcb')
 
-    unless dev
-        link(type="text/css" rel="stylesheet" href='/assets/client.css')
-    script(defer type='text/javascript' src='/assets/client.js')
+    block script
+        link(type="text/css" rel="stylesheet" href='/assets/' + req.params.channel.replace(/\s/g, '') + '.css')
+        script(defer type='text/javascript' src='/assets/' + req.params.channel.replace(/\s/g, '') + '.js')
 
     block body
         body
-

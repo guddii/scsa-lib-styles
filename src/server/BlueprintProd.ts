@@ -1,9 +1,10 @@
+import cors from "cors";
 import express, { Request, Response } from "express";
+import { ParamsDictionary } from "express-serve-static-core";
+import nodesi from "nodesi";
 import path from "path";
 import { Manifest } from "./api/resources/Manifest";
 import { ViewModel } from "./model/ViewModel";
-import cors from "cors";
-import nodesi from "nodesi";
 
 const STATIC_DIR = "src/server/static/";
 const MODULE_DIR = "node_modules/@scsa/styling/";
@@ -14,13 +15,13 @@ const LOCAL_ASSETS = path.resolve("dist/client/");
 
 const API = path.resolve("dist/api/");
 
-interface BlueprintOptions {
+interface IBlueprintOptions {
     dev: boolean;
     name: string;
     short_name: string;
 }
 
-interface ViewOptions {
+interface IViewOptions {
     name: string;
     route: string;
     view: string;
@@ -28,8 +29,25 @@ interface ViewOptions {
 }
 
 class BlueprintProd {
-    readonly app: express.Application;
-    protected options: BlueprintOptions;
+
+    private static paramsParser(params: ParamsDictionary) {
+        // TODO: Use this for route generation
+        const defaults = {
+            js: "Window",
+            endpoint: "Event-driven Consumer",
+            construction: "Event Message",
+            channel: "Messaging Bridge",
+            routing: "None",
+            transformation: "None"
+        };
+
+        // Clean object from undefined values
+        params = JSON.parse(JSON.stringify(params));
+        // Enhance URL params with default values
+        return (params = { ...defaults, ...params });
+    }
+    public readonly app: express.Application;
+    protected options: IBlueprintOptions;
     protected cfg: any;
 
     /**
@@ -38,7 +56,7 @@ class BlueprintProd {
      * @param cfg
      * @param options This will available within the templates
      */
-    constructor(cfg: any, options?: BlueprintOptions) {
+    constructor(cfg: any, options?: IBlueprintOptions) {
         this.app = express();
         this.cfg = cfg;
         this.options = options || {
@@ -52,7 +70,7 @@ class BlueprintProd {
     /**
      * Apply settings
      */
-    settings() {
+    public settings() {
         this.app.set("views", path.resolve("src/server/views"));
         this.app.set("view engine", "pug");
         this.app.use(cors());
@@ -61,7 +79,7 @@ class BlueprintProd {
     /**
      * Enables Edge Side Includes
      */
-    esi() {
+    public esi() {
         this.app.use(nodesi.middleware());
         return this;
     }
@@ -69,7 +87,7 @@ class BlueprintProd {
     /**
      * Apply assets
      */
-    assets() {
+    public assets() {
         this.app.use("/assets", express.static(LOCAL_ASSETS));
         this.app.use("/api", express.static(API));
     }
@@ -77,7 +95,7 @@ class BlueprintProd {
     /**
      * Apply static
      */
-    static() {
+    public static() {
         this.app.use(express.static(LOCAL_STATIC));
         this.app.use(express.static(SHARED_STATIC));
     }
@@ -88,13 +106,14 @@ class BlueprintProd {
      * @param options View options
      * @param req Request object
      */
-    data(options: ViewOptions, req: Request) {
+    public data(options: IViewOptions, req: Request) {
+        const params = BlueprintProd.paramsParser(req.params);
         return {
             ...this.cfg,
             ...this.options,
             ...options,
-            ...new ViewModel(this.cfg, req.params),
-            req: req.params
+            ...new ViewModel(this.cfg, params),
+            req: { params }
         };
     }
 
@@ -103,7 +122,7 @@ class BlueprintProd {
      *
      * @param options View options
      */
-    view(options: ViewOptions) {
+    public view(options: IViewOptions) {
         // View as JSON
         this.app.get(options.route + ".json", (req: Request, res: Response) => {
             res.type("json");
@@ -119,7 +138,7 @@ class BlueprintProd {
     /**
      * Apply all default mounts & settings
      */
-    mounts() {
+    public mounts() {
         this.settings();
         this.app.get("/manifest.json", (req: Request, res: Response) => {
             res.type("json");
@@ -155,7 +174,7 @@ class BlueprintProd {
      * @param handle
      * @param listeningListener
      */
-    listen(
+    public listen(
         handle = process.env.PORT || 3000,
         listeningListener = () => {
             console.log("Server running on http://localhost:" + handle);

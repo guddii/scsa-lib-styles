@@ -1,7 +1,4 @@
 block body
-if req && req.type
-    link(type="text/css" rel="stylesheet" href=CURRENT.options.url + 'api/fragments/' + req.type + '.css')
-    script(defer type='text/javascript' src=CURRENT.options.url + 'api/fragments/' + req.type + '.js')
-else
-    link(type="text/css" rel="stylesheet" href=CURRENT.options.url + 'assets/client.css')
-    script(defer type='text/javascript' src=CURRENT.options.url + 'assets/client.js')
+
+link(type="text/css" rel="stylesheet" href=CURRENT.options.url + 'api/fragments/' + req.params.type + '.css')
+script(defer type='text/javascript' src=CURRENT.options.url + 'api/fragments/' + req.params.type + '.js')

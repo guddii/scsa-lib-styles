@@ -13,12 +13,12 @@ class BlueprintDev extends Blueprint {
      */
     constructor(cfg: any) {
         super(cfg);
-        this.hmr();
     }
+
     /**
      * Attach the dev middleware to the compiler & the server
      */
-    dev() {
+    public dev() {
         this.app.use(
             webpackDevMiddleware(compiler, {
                 logLevel: "warn",
@@ -32,7 +32,7 @@ class BlueprintDev extends Blueprint {
     /**
      * Attach the hot middleware to the compiler & the server
      */
-    hot() {
+    public hot() {
         this.app.use(
             webpackHotMiddleware(compiler, {
                 log: console.log,
@@ -46,7 +46,7 @@ class BlueprintDev extends Blueprint {
     /**
      * Apply HMR mounts to application
      */
-    hmr() {
+    public hmr() {
         this.options = { ...this.options, ...{ dev: true } };
         this.dev();
         this.hot();

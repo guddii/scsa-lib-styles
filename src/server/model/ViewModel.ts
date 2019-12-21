@@ -1,24 +1,11 @@
-import { Dropdown, DropdownItem } from "./view/Dropdown";
 import { ParamsDictionary } from "express-serve-static-core";
-
-// TODO: Use this for route generation
-const defaults = {
-    js: "Window",
-    endpoint: "Event-driven Consumer",
-    construction: "Event Message",
-    channel: "Messaging Bridge",
-    routing: "None",
-    transformation: "None"
-};
+import { Dropdown, DropdownItem } from "./view/Dropdown";
 
 export class ViewModel {
-    viewModel: any;
+    public viewModel: any;
 
     constructor(cfg: any, params: ParamsDictionary) {
-        // Clean object from undefined values
-        params = JSON.parse(JSON.stringify(params));
-        // Enhance URL params with default values
-        params = { ...defaults, ...params };
+;
 
         this.viewModel = {
             navigation: {
@@ -62,42 +49,42 @@ export class ViewModel {
                             }),
                             new Dropdown({
                                 label: "Channel",
-                                text: params.channel
-                                // items: [
-                                //     new DropdownItem(
-                                //         {
-                                //             text: "Datatype Channel",
-                                //             route: {
-                                //                 channel: "Datatype Channel",
-                                //                 routing: "None"
-                                //             }
-                                //         },
-                                //         cfg,
-                                //         params
-                                //     ),
-                                //     new DropdownItem(
-                                //         {
-                                //             text: "Messaging Bridge",
-                                //             route: {
-                                //                 channel: "Messaging Bridge",
-                                //                 routing: "None"
-                                //             }
-                                //         },
-                                //         cfg,
-                                //         params
-                                //     ),
-                                //     new DropdownItem(
-                                //         {
-                                //             text: "Message Bus",
-                                //             route: {
-                                //                 channel: "Message Bus",
-                                //                 routing: "None"
-                                //             }
-                                //         },
-                                //         cfg,
-                                //         params
-                                //     )
-                                // ]
+                                text: params.channel,
+                                items: [
+                                    //     new DropdownItem(
+                                    //         {
+                                    //             text: "Datatype Channel",
+                                    //             route: {
+                                    //                 channel: "Datatype Channel",
+                                    //                 routing: "None"
+                                    //             }
+                                    //         },
+                                    //         cfg,
+                                    //         params
+                                    //     ),
+                                    new DropdownItem(
+                                        {
+                                            text: "Messaging Bridge",
+                                            route: {
+                                                channel: "Messaging Bridge",
+                                                routing: "None"
+                                            }
+                                        },
+                                        cfg,
+                                        params
+                                    ),
+                                    new DropdownItem(
+                                        {
+                                            text: "Message Bus",
+                                            route: {
+                                                channel: "Message Bus",
+                                                routing: "None"
+                                            }
+                                        },
+                                        cfg,
+                                        params
+                                    )
+                                ]
                             }),
                             new Dropdown({
                                 label: "Routing",
