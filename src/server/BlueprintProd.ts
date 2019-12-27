@@ -1,10 +1,10 @@
 import cors from "cors";
 import express, { Request, Response } from "express";
-import { ParamsDictionary } from "express-serve-static-core";
 import nodesi from "nodesi";
 import path from "path";
 import { Manifest } from "./api/resources/Manifest";
 import { ViewModel } from "./model/ViewModel";
+import { Parser } from "./utils/Parser";
 
 const STATIC_DIR = "src/server/static/";
 const MODULE_DIR = "node_modules/@scsa/styling/";
@@ -29,23 +29,6 @@ interface IViewOptions {
 }
 
 class BlueprintProd {
-
-    private static paramsParser(params: ParamsDictionary) {
-        // TODO: Use this for route generation
-        const defaults = {
-            js: "Window",
-            endpoint: "Event-driven Consumer",
-            construction: "Event Message",
-            channel: "Messaging Bridge",
-            routing: "None",
-            transformation: "None"
-        };
-
-        // Clean object from undefined values
-        params = JSON.parse(JSON.stringify(params));
-        // Enhance URL params with default values
-        return (params = { ...defaults, ...params });
-    }
     public readonly app: express.Application;
     protected options: IBlueprintOptions;
     protected cfg: any;
@@ -107,13 +90,13 @@ class BlueprintProd {
      * @param req Request object
      */
     public data(options: IViewOptions, req: Request) {
-        const params = BlueprintProd.paramsParser(req.params);
+        req.params = Parser.params(req.params);
         return {
             ...this.cfg,
             ...this.options,
             ...options,
             ...new ViewModel(this.cfg, req),
-            req: { params }
+            req: { params: req.params }
         };
     }
 
@@ -147,23 +130,23 @@ class BlueprintProd {
         this.assets();
         this.static();
         this.view({
+            description: "Application",
+            name: "App",
             route: "/",
-            view: "index",
-            name: "App",
-            description: "Application"
+            view: "index"
         });
         this.view({
+            description: "Application",
+            name: "App",
             route: "/api/fragments/:type?",
-            view: "fragment",
-            name: "App",
-            description: "Application"
+            view: "fragment"
         });
         this.view({
+            description: "Application",
+            name: "App",
             route:
                 "/Messaging/:js?/:endpoint?/:construction?/:channel?/:routing?/:transformation?",
-            view: "index",
-            name: "App",
-            description: "Application"
+            view: "index"
         });
         return this;
     }

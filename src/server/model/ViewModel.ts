@@ -78,11 +78,11 @@ export class ViewModel {
                         items: [
                             new Dropdown({
                                 label: "Endpoints",
-                                text: "Event-driven Consumer"
+                                text: req.params.endpoint
                             }),
                             new Dropdown({
                                 label: "Construction",
-                                text: "Event Message"
+                                text: req.params.construction
                             }),
                             new Dropdown({
                                 items: [
@@ -142,7 +142,7 @@ export class ViewModel {
                             }),
                             new Dropdown({
                                 label: "Translator",
-                                text: "None"
+                                text: req.params.transformation
                             })
                         ],
                         text: "Messaging"
