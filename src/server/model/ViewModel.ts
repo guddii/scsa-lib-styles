@@ -1,5 +1,6 @@
 import { Request } from "express";
-import { Dropdown, DropdownItem } from "./view/Dropdown";
+import { Dropdown } from "./view/Dropdown";
+import { buildURL, DropdownItem } from "./view/DropdownItem";
 
 export class ViewModel {
     public viewModel: any;
@@ -17,9 +18,10 @@ export class ViewModel {
                                             text:
                                                 cfg.ORCHESTRATORS.Compoxure
                                                     .options.text,
-                                            url: new URL(
-                                                req.path,
-                                                cfg.ORCHESTRATORS.Compoxure.options.url
+                                            url: buildURL(
+                                                req.params,
+                                                {},
+                                                cfg.ORCHESTRATORS.Compoxure
                                             )
                                         },
                                         cfg,
@@ -30,9 +32,10 @@ export class ViewModel {
                                             text:
                                                 cfg.ORCHESTRATORS.iFrame.options
                                                     .text,
-                                            url: new URL(
-                                                req.path,
-                                                cfg.ORCHESTRATORS.iFrame.options.url
+                                            url: buildURL(
+                                                req.params,
+                                                { channel: "Messaging Bridge" },
+                                                cfg.ORCHESTRATORS.iFrame
                                             )
                                         },
                                         cfg,
@@ -43,9 +46,10 @@ export class ViewModel {
                                             text:
                                                 cfg.ORCHESTRATORS.WebComponents
                                                     .options.text,
-                                            url: new URL(
-                                                req.path,
-                                                cfg.ORCHESTRATORS.WebComponents.options.url
+                                            url: buildURL(
+                                                req.params,
+                                                {},
+                                                cfg.ORCHESTRATORS.WebComponents
                                             )
                                         },
                                         cfg,
@@ -84,45 +88,7 @@ export class ViewModel {
                                 label: "Construction",
                                 text: req.params.construction
                             }),
-                            new Dropdown({
-                                items: [
-                                    //     new DropdownItem(
-                                    //         {
-                                    //             text: "Datatype Channel",
-                                    //             route: {
-                                    //                 channel: "Datatype Channel",
-                                    //                 routing: "None"
-                                    //             }
-                                    //         },
-                                    //         cfg,
-                                    //         req.params
-                                    //     ),
-                                    new DropdownItem(
-                                        {
-                                            route: {
-                                                channel: "Messaging Bridge",
-                                                routing: "None"
-                                            },
-                                            text: "Messaging Bridge"
-                                        },
-                                        cfg,
-                                        req.params
-                                    ),
-                                    new DropdownItem(
-                                        {
-                                            route: {
-                                                channel: "Message Bus",
-                                                routing: "None"
-                                            },
-                                            text: "Message Bus"
-                                        },
-                                        cfg,
-                                        req.params
-                                    )
-                                ],
-                                label: "Channel",
-                                text: req.params.channel
-                            }),
+                            new Dropdown(this.channel(cfg, req)),
                             new Dropdown({
                                 label: "Routing",
                                 text: req.params.routing
@@ -150,5 +116,52 @@ export class ViewModel {
                 ]
             }
         };
+    }
+
+    public channel(cfg, req) {
+        const model = {
+            items: undefined,
+            label: "Channel",
+            text: req.params.channel
+        };
+        if (cfg.KEY !== "iFrame") {
+            model.items = [
+                //     new DropdownItem(
+                //         {
+                //             text: "Datatype Channel",
+                //             route: {
+                //                 channel: "Datatype Channel",
+                //                 routing: "None"
+                //             }
+                //         },
+                //         cfg,
+                //         req.params
+                //     ),
+                new DropdownItem(
+                    {
+                        route: {
+                            channel: "Messaging Bridge",
+                            routing: "None"
+                        },
+                        text: "Messaging Bridge"
+                    },
+                    cfg,
+                    req.params
+                ),
+                new DropdownItem(
+                    {
+                        route: {
+                            channel: "Message Bus",
+                            routing: "None"
+                        },
+                        text: "Message Bus"
+                    },
+                    cfg,
+                    req.params
+                )
+            ];
+        }
+
+        return model;
     }
 }
