@@ -3,9 +3,7 @@ self.addEventListener("message", function(event) {
     // Get all the connected clients and forward the message along.
     const promise = self.clients.matchAll().then(function(clientList) {
         clientList.forEach(function(client) {
-            client.postMessage({
-                message: event.data
-            });
+            client.postMessage(event.data);
         });
     });
 
