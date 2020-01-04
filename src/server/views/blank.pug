@@ -10,8 +10,11 @@ html(lang="en")
         meta(name='theme-color' content='#248fcb')
 
     block script
-        link(type="text/css" rel="stylesheet" href='/assets/' + req.params.channel.replace(/\s/g, '') + '.css')
-        script(defer type='text/javascript' src='/assets/' + req.params.channel.replace(/\s/g, '') + '.js')
-
+        if req.params.routing !== "None"
+            link(type="text/css" rel="stylesheet" href='/assets/' + req.params.routing.replace(/\s/g, '') + '.css')
+            script(defer type='text/javascript' src='/assets/' + req.params.routing.replace(/\s/g, '') + '.js')
+        else
+            link(type="text/css" rel="stylesheet" href='/assets/' + req.params.channel.replace(/\s/g, '') + '.css')
+            script(defer type='text/javascript' src='/assets/' + req.params.channel.replace(/\s/g, '') + '.js')
     block body
         body

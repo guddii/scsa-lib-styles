@@ -11,105 +11,18 @@ export class ViewModel {
                 items: [
                     {
                         items: [
-                            new Dropdown({
-                                items: [
-                                    new DropdownItem(
-                                        {
-                                            text:
-                                                cfg.ORCHESTRATORS.Compoxure
-                                                    .options.text,
-                                            url: buildURL(
-                                                req.params,
-                                                {},
-                                                cfg.ORCHESTRATORS.Compoxure
-                                            )
-                                        },
-                                        cfg,
-                                        req.params
-                                    ),
-                                    new DropdownItem(
-                                        {
-                                            text:
-                                                cfg.ORCHESTRATORS.iFrame.options
-                                                    .text,
-                                            url: buildURL(
-                                                req.params,
-                                                { channel: "Messaging Bridge" },
-                                                cfg.ORCHESTRATORS.iFrame
-                                            )
-                                        },
-                                        cfg,
-                                        req.params
-                                    ),
-                                    new DropdownItem(
-                                        {
-                                            text:
-                                                cfg.ORCHESTRATORS.WebComponents
-                                                    .options.text,
-                                            url: buildURL(
-                                                req.params,
-                                                {},
-                                                cfg.ORCHESTRATORS.WebComponents
-                                            )
-                                        },
-                                        cfg,
-                                        req.params
-                                    )
-                                ],
-                                label: "DOM",
-                                text: cfg.CURRENT.options.text
-                            }),
-                            new Dropdown({
-                                label: "JS",
-                                text: req.params.js
-                                // items: [
-                                //     new DropdownItem(
-                                //         { route: { js: "Window" } },
-                                //         cfg,
-                                //         req.params
-                                //     ),
-                                //     new DropdownItem(
-                                //         { route: { js: "Worker" } },
-                                //         cfg,
-                                //         req.params
-                                //     )
-                                // ]
-                            })
+                            new Dropdown(this.dom(cfg, req)),
+                            new Dropdown(this.js(cfg, req))
                         ],
                         text: "Isolation"
                     },
                     {
                         items: [
-                            new Dropdown({
-                                label: "Endpoints",
-                                text: req.params.endpoint
-                            }),
-                            new Dropdown({
-                                label: "Construction",
-                                text: req.params.construction
-                            }),
+                            new Dropdown(this.endpoint(cfg, req)),
+                            new Dropdown(this.construction(cfg, req)),
                             new Dropdown(this.channel(cfg, req)),
-                            new Dropdown({
-                                label: "Routing",
-                                text: req.params.routing
-                                // items: [
-                                //     new DropdownItem(
-                                //         {
-                                //             text: "Message Broker",
-                                //             route: {
-                                //                 channel: "None",
-                                //                 routing: "Message Broker"
-                                //             }
-                                //         },
-                                //         cfg,
-                                //         req.params
-                                //     )
-                                // ]
-                            }),
-                            new Dropdown({
-                                label: "Translator",
-                                text: req.params.transformation
-                            })
+                            new Dropdown(this.routing(cfg, req)),
+                            new Dropdown(this.transformation(cfg, req))
                         ],
                         text: "Messaging"
                     }
@@ -118,7 +31,93 @@ export class ViewModel {
         };
     }
 
-    public channel(cfg, req) {
+    private dom(cfg: any, req: Request) {
+        return {
+            items: [
+                new DropdownItem(
+                    {
+                        text: cfg.ORCHESTRATORS.Compoxure.options.text,
+                        url: buildURL(
+                            req.params,
+                            {},
+                            cfg.ORCHESTRATORS.Compoxure
+                        )
+                    },
+                    cfg,
+                    req.params
+                ),
+                new DropdownItem(
+                    {
+                        text: cfg.ORCHESTRATORS.iFrame.options.text,
+                        url: buildURL(
+                            req.params,
+                            {
+                                channel: "Messaging Bridge",
+                                js: "Window",
+                                routing: "None"
+                            },
+                            cfg.ORCHESTRATORS.iFrame
+                        )
+                    },
+                    cfg,
+                    req.params
+                ),
+                new DropdownItem(
+                    {
+                        text: cfg.ORCHESTRATORS.WebComponents.options.text,
+                        url: buildURL(
+                            req.params,
+                            {},
+                            cfg.ORCHESTRATORS.WebComponents
+                        )
+                    },
+                    cfg,
+                    req.params
+                )
+            ],
+            label: "DOM",
+            text: cfg.CURRENT.options.text
+        };
+    }
+
+    private js(cfg: any, req: Request) {
+        const model = {
+            items: undefined,
+            label: "JS",
+            text: req.params.js
+        };
+        if (cfg.KEY !== "iFrame") {
+            model.items = [
+                new DropdownItem(
+                    {
+                        route: {
+                            channel: "Messaging Bridge",
+                            js: "Window",
+                            routing: "None"
+                        },
+                        text: "Window"
+                    },
+                    cfg,
+                    req.params
+                ),
+                new DropdownItem(
+                    {
+                        route: {
+                            channel: "None",
+                            js: "Worker",
+                            routing: "Message Broker"
+                        },
+                        text: "Worker"
+                    },
+                    cfg,
+                    req.params
+                )
+            ];
+        }
+        return model;
+    }
+
+    private channel(cfg: any, req: Request) {
         const model = {
             items: undefined,
             label: "Channel",
@@ -141,6 +140,7 @@ export class ViewModel {
                     {
                         route: {
                             channel: "Messaging Bridge",
+                            js: "Window",
                             routing: "None"
                         },
                         text: "Messaging Bridge"
@@ -152,6 +152,7 @@ export class ViewModel {
                     {
                         route: {
                             channel: "Message Bus",
+                            js: "Window",
                             routing: "None"
                         },
                         text: "Message Bus"
@@ -163,5 +164,52 @@ export class ViewModel {
         }
 
         return model;
+    }
+
+    private routing(cfg: any, req: Request) {
+        const model = {
+            items: undefined,
+            label: "Routing",
+            text: req.params.routing
+        };
+
+        if (cfg.KEY !== "iFrame") {
+            model.items = [
+                new DropdownItem(
+                    {
+                        route: {
+                            channel: "None",
+                            js: "Worker",
+                            routing: "Message Broker"
+                        },
+                        text: "Message Broker"
+                    },
+                    cfg,
+                    req.params
+                )
+            ];
+        }
+        return model;
+    }
+
+    private endpoint(cfg: any, req: Request) {
+        return {
+            label: "Endpoints",
+            text: req.params.endpoint
+        };
+    }
+
+    private construction(cfg: any, req: Request) {
+        return {
+            label: "Construction",
+            text: req.params.construction
+        };
+    }
+
+    private transformation(cfg: any, req: Request) {
+        return {
+            label: "Translator",
+            text: req.params.transformation
+        };
     }
 }
