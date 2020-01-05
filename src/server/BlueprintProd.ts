@@ -96,7 +96,7 @@ class BlueprintProd {
             ...this.options,
             ...options,
             ...new ViewModel(this.cfg, req),
-            req: { params: req.params }
+            req: { params: req.params, query: req.query }
         };
     }
 
@@ -140,6 +140,12 @@ class BlueprintProd {
             name: "App",
             route: "/api/fragments/:type?",
             view: "fragment"
+        });
+        this.view({
+            description: "Application",
+            name: "App",
+            route: "/api/fragments/:type?/:smth",
+            view: "fragment2"
         });
         this.view({
             description: "Application",

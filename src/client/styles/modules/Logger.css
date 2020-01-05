@@ -13,34 +13,62 @@
     justify-content: flex-end;
 }
 
+.Logger:empty {
+    display: none;
+}
+
 .Logger--spaced {
     padding: 1.5rem;
 }
-
+.Logger--sticky,
 .Logger--stickyBottom {
-    position: absolute;
     z-index: -1;
     right: 0;
     bottom: 0;
     left: 0;
 }
 
+.Logger--stickyBottom {
+    position: absolute;
+}
+
+.Logger--inverted {
+    color: gray;
+}
+
 .Logger__item {
     transition: opacity 500ms ease-out;
 
     opacity: 0;
+    visibility: collapse;
+    width: 100%;
+}
+
+.Logger__item--truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .Logger__item:nth-last-child(4),
 .Logger__item:nth-last-child(3) {
     opacity: 0.25;
+    visibility: initial;
 }
 
 .Logger__item:nth-last-child(2) {
     opacity: 0.5;
+    visibility: initial;
 }
 
 .Logger__item:nth-last-child(1),
 .Logger__item--visible {
     opacity: 1;
+    visibility: initial;
+}
+
+.Logger--thin .Logger__item:nth-last-child(4),
+.Logger--thin .Logger__item:nth-last-child(3),
+.Logger--thin .Logger__item:nth-last-child(2) {
+    visibility: collapse;
 }

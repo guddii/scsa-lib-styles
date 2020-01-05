@@ -3,7 +3,7 @@
 /* Generics */
 @import "./generic/border-box.css";
 @import "./generic/font-family.css";
-@import "./generic/fullBleed-body.css";
+@import "./generic/fullBleed.css";
 /* Modules  */
 @import "./modules/Brand.css";
 @import "./modules/Button.css";

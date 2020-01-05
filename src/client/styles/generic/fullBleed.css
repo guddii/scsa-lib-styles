@@ -8,3 +8,8 @@ body,
 :host {
     position: relative;
 }
+
+slot {
+    display: block;
+    width: 100%;
+}

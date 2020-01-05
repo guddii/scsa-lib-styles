@@ -3,35 +3,8 @@ import { Dropdown } from "./view/Dropdown";
 import { buildURL, DropdownItem } from "./view/DropdownItem";
 
 export class ViewModel {
-    public viewModel: any;
 
-    constructor(cfg: any, req: Request) {
-        this.viewModel = {
-            navigation: {
-                items: [
-                    {
-                        items: [
-                            new Dropdown(this.dom(cfg, req)),
-                            new Dropdown(this.js(cfg, req))
-                        ],
-                        text: "Isolation"
-                    },
-                    {
-                        items: [
-                            new Dropdown(this.endpoint(cfg, req)),
-                            new Dropdown(this.construction(cfg, req)),
-                            new Dropdown(this.channel(cfg, req)),
-                            new Dropdown(this.routing(cfg, req)),
-                            new Dropdown(this.transformation(cfg, req))
-                        ],
-                        text: "Messaging"
-                    }
-                ]
-            }
-        };
-    }
-
-    private dom(cfg: any, req: Request) {
+    private static dom(cfg: any, req: Request) {
         return {
             items: [
                 new DropdownItem(
@@ -80,7 +53,7 @@ export class ViewModel {
         };
     }
 
-    private js(cfg: any, req: Request) {
+    private static js(cfg: any, req: Request) {
         const model = {
             items: undefined,
             label: "JS",
@@ -117,7 +90,7 @@ export class ViewModel {
         return model;
     }
 
-    private channel(cfg: any, req: Request) {
+    private static channel(cfg: any, req: Request) {
         const model = {
             items: undefined,
             label: "Channel",
@@ -166,7 +139,7 @@ export class ViewModel {
         return model;
     }
 
-    private routing(cfg: any, req: Request) {
+    private static routing(cfg: any, req: Request) {
         const model = {
             items: undefined,
             label: "Routing",
@@ -192,24 +165,52 @@ export class ViewModel {
         return model;
     }
 
-    private endpoint(cfg: any, req: Request) {
+    private static endpoint(cfg: any, req: Request) {
         return {
             label: "Endpoints",
             text: req.params.endpoint
         };
     }
 
-    private construction(cfg: any, req: Request) {
+    private static construction(cfg: any, req: Request) {
         return {
             label: "Construction",
             text: req.params.construction
         };
     }
 
-    private transformation(cfg: any, req: Request) {
+    private static transformation(cfg: any, req: Request) {
         return {
             label: "Translator",
             text: req.params.transformation
+        };
+    }
+
+    public viewModel: any;
+
+    constructor(cfg: any, req: Request) {
+        this.viewModel = {
+            navigation: {
+                items: [
+                    {
+                        items: [
+                            new Dropdown(ViewModel.dom(cfg, req)),
+                            new Dropdown(ViewModel.js(cfg, req))
+                        ],
+                        text: "Isolation"
+                    },
+                    {
+                        items: [
+                            new Dropdown(ViewModel.endpoint(cfg, req)),
+                            new Dropdown(ViewModel.construction(cfg, req)),
+                            new Dropdown(ViewModel.channel(cfg, req)),
+                            new Dropdown(ViewModel.routing(cfg, req)),
+                            new Dropdown(ViewModel.transformation(cfg, req))
+                        ],
+                        text: "Messaging"
+                    }
+                ]
+            }
         };
     }
 }
