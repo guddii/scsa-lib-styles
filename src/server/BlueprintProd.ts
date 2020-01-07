@@ -138,14 +138,8 @@ class BlueprintProd {
         this.view({
             description: "Application",
             name: "App",
-            route: "/api/fragments/:type?",
+            route: "/api/fragments/:type?/:partial?",
             view: "fragment"
-        });
-        this.view({
-            description: "Application",
-            name: "App",
-            route: "/api/fragments/:type?/:smth",
-            view: "fragment2"
         });
         this.view({
             description: "Application",

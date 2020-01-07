@@ -3,7 +3,6 @@ import { Dropdown } from "./view/Dropdown";
 import { buildURL, DropdownItem } from "./view/DropdownItem";
 
 export class ViewModel {
-
     private static dom(cfg: any, req: Request) {
         return {
             items: [
@@ -57,9 +56,9 @@ export class ViewModel {
         const model = {
             items: undefined,
             label: "JS",
-            text: req.params.js
+            text: (cfg.KEY === "Compoxure") ? "None" : req.params.js
         };
-        if (cfg.KEY !== "iFrame") {
+        if (cfg.KEY === "WebComponents") {
             model.items = [
                 new DropdownItem(
                     {
@@ -94,9 +93,9 @@ export class ViewModel {
         const model = {
             items: undefined,
             label: "Channel",
-            text: req.params.channel
+            text: (cfg.KEY === "Compoxure") ? "None" : req.params.channel
         };
-        if (cfg.KEY !== "iFrame") {
+        if (cfg.KEY === "WebComponents") {
             model.items = [
                 //     new DropdownItem(
                 //         {
@@ -143,10 +142,10 @@ export class ViewModel {
         const model = {
             items: undefined,
             label: "Routing",
-            text: req.params.routing
+            text: (cfg.KEY === "Compoxure") ? "None" : req.params.routing
         };
 
-        if (cfg.KEY !== "iFrame") {
+        if (cfg.KEY === "WebComponents") {
             model.items = [
                 new DropdownItem(
                     {
@@ -168,21 +167,21 @@ export class ViewModel {
     private static endpoint(cfg: any, req: Request) {
         return {
             label: "Endpoints",
-            text: req.params.endpoint
+            text: (cfg.KEY === "Compoxure") ? "None" : req.params.endpoint
         };
     }
 
     private static construction(cfg: any, req: Request) {
         return {
             label: "Construction",
-            text: req.params.construction
+            text: (cfg.KEY === "Compoxure") ? "None" : req.params.construction
         };
     }
 
     private static transformation(cfg: any, req: Request) {
         return {
             label: "Translator",
-            text: req.params.transformation
+            text: (cfg.KEY === "Compoxure") ? "None" : req.params.transformation
         };
     }
 
