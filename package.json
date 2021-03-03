@@ -24,7 +24,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "nodesi": "^1.12.1",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "typeface-permanent-marker": "0.0.72",
     "typescript": "^3.7.2",
     "webpack": "^4.41.2",
